@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:lang="http://www.springframework.org/schema/lang" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+	http://www.springframework.org/schema/context 
+	http://www.springframework.org/schema/context/spring-context-3.0.xsd
+	http://www.springframework.org/schema/lang 
+	http://www.springframework.org/schema/lang/spring-lang-3.0.xsd"
+	default-lazy-init="true">
+
+	<bean class="com.integrosys.base.hs.techinfra.support.context.BeanHouse" />
+
+	<lang:defaults refresh-check-delay="5000" />
+
+	<bean id="ofaDataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName">
+			<value>org.hsqldb.jdbcDriver</value>
+		</property>
+		<property name="url">
+			<value>jdbc:hsqldb:mem:temp</value>
+		</property>
+		<property name="username">
+			<value>sa</value>
+		</property>
+		<property name="password">
+			<value></value>
+		</property>
+	</bean>
+
+	<bean id="ofaTransactionManager"
+		class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+		<property name="sessionFactory">
+			<ref bean="ofaSessionFactory" />
+		</property>
+	</bean>
+
+	<bean id="ofaSessionFactory"
+		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<property name="dataSource">
+			<ref bean="ofaDataSource" />
+		</property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">org.hibernate.dialect.HSQLDialect</prop>
+				<prop key="hibernate.hbm2ddl.auto">create-drop</prop>
+				<prop key="hibernate.max_fetch_depth">2</prop>
+				<prop key="hibernate.jdbc.batch_size">100</prop>
+				<prop key="hibernate.query.factory_class">org.hibernate.hql.classic.ClassicQueryTranslatorFactory
+				</prop>
+				<prop key="hibernate.cache.provider_class">org.hibernate.cache.NoCacheProvider</prop>
+			</props>
+		</property>
+		<property name="mappingLocations">
+			<list>
+				<value>/WEB-INF/classes/A.hbm.xml</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="aDAO" class="com.integrosys.course.app.test.bus.ADaoImpl">
+		<property name="sessionFactory">
+			<ref bean="ofaSessionFactory" />
+		</property>
+	</bean>
+	
+	<bean id="aAction.listACommand" class="com.integrosys.course.ui.test.ListACommand">
+		<property name="aProxy">
+			<ref bean="aProxy"/>
+		</property>
+	</bean>
+
+	<bean id="aProxy" class="com.integrosys.course.app.test.bus.AProxy"/>
+</beans>

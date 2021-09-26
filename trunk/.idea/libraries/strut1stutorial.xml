@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="strut1stutorial">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/doc/strut1stutorial.zip!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

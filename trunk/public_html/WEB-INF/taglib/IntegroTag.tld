@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE taglib PUBLIC "-//Sun Microsystems, Inc.//DTD JSP Tag Library 1.1//EN" "http://java.sun.com/j2ee/dtds/web-jsptaglibrary_1_1.dtd">
+<taglib>
+	<tlibversion>1.0</tlibversion>
+	<jspversion>1.1</jspversion>
+	<shortname>integro</shortname>
+	<tag>
+		<name>pageindex</name>
+		<tagclass>com.integrosys.base.uiinfra.tag.PageIndexTag</tagclass>
+		<bodycontent>JSP</bodycontent>
+		<info>Tag to support page indexing</info>
+		<attribute>
+			<name>pageIndex</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>url</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>submitFlag</name>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+	<tag>
+		<name>alphaindex</name>
+		<tagclass>com.integrosys.base.uiinfra.tag.AlphaIndexTag</tagclass>
+		<bodycontent>JSP</bodycontent>
+		<info>Tag to support page indexing</info>
+		<attribute>
+			<name>url</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>submitFlag</name>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+	<tag>
+		<name>currentDate</name>
+		<tagclass>com.integrosys.base.uiinfra.tag.CurrentDateTag</tagclass>
+		<bodycontent>JSP</bodycontent>
+		<info>
+            This is will display current date and time
+        </info>
+		<attribute>
+			<name>locale</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+	<tag>
+		<name>date</name>
+		<tagclass>com.integrosys.base.uiinfra.tag.DateTag</tagclass>
+		<bodycontent>JSP</bodycontent>
+		<info>
+            Prints a certain Date based on a specified locale
+        </info>
+		<attribute>
+			<name>object</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<!--
+        		'globalLocale' attribute can be true/false. by default it is 'true'.
+        		true  : the locale will be taken from the session.
+        		false : takes the locale specified in the 'locale' attribute.
+        	-->
+			<name>globalLocale</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>locale</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>dateFormat</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>simpleDateFormat</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>timeFormat</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+	<tag>
+		<name>currency</name>
+		<tagclass>com.integrosys.base.uiinfra.tag.CurrencyTag</tagclass>
+		<bodycontent>JSP</bodycontent>
+		<info>
+            Formats an Amount object into String
+        </info>
+		<attribute>
+			<name>amount</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>param</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>decimal</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+
+	<tag>
+		<!--
+		Converts the given String value into titlecase. (InitChar Upper, remove '_'(underscores) )
+		Ex: input  - "PENDING_UPDATE"
+		    output - "Pending Update"
+	-->
+		<name>trx-status</name>
+		<tagclass>com.integrosys.base.uiinfra.tag.CaseConverterTag</tagclass>
+		<bodycontent>empty</bodycontent>
+		<info>Tag to support Displayable Transaction State </info>
+		<attribute>
+			<name>trxState</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+	<tag>
+		<!--
+		returns empty if the given object is null.
+	-->
+		<name>empty-if-null</name>
+		<tagclass>com.integrosys.base.uiinfra.tag.EmptyIfNullTag</tagclass>
+		<bodycontent>empty</bodycontent>
+		<info>Tag to make empty string if the given object is null</info>
+		<attribute>
+			<name>value</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+	<tag>
+		<!--	 This tag displays True/False or Yes/No in either
+	capital/smallCaps for a given java boolean value.
+	-->
+		<name>boolean-display</name>
+		<tagclass>com.integrosys.base.uiinfra.tag.BooleanDisplayTag</tagclass>
+		<bodycontent>empty</bodycontent>
+		<info>Tag to boolean values</info>
+		<attribute>
+			<name>value</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<!-- default is "tf" -->
+			<name>style</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+	<tag>
+		<!--	 
+		Tag to format a double value.
+		By default, uses the global Locale (the one set in the session with key . com.integrosys.base.uiinfra.common.Constants.GLOBAL_LOCALE_KEY)
+		To specify the locale other than in the session, set 'globalLocale' attribute to 'false'
+	-->
+		<name>number</name>
+		<tagclass>com.integrosys.base.uiinfra.tag.NumberTag</tagclass>
+		<bodycontent>empty</bodycontent>
+		<info>Tag to boolean values</info>
+		<attribute>
+			<name>number</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<!--
+        		'globalLocale' attribute can be either 'true' or 'false'. Default is 'true'.
+        		'true'  : the locale will be taken from the session.
+        		'false' : takes the locale specified in the 'locale' attribute.
+        	-->
+			<name>globalLocale</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<!-- The java.util.Locale object. This attribute is used only when 'globalLocale'=='false'.  -->
+			<name>locale</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+	<tag>
+		<!-- 
+		The tag wraps the given text value by each line to the specified number of characters.
+		This also converts '\n\r' to '<br> to make is html-complient line-break.
+		for varying line length, specify 'lineLength' attribute which by default is 60(characters).
+	-->
+		<name>wrapper</name>
+		<tagclass>com.integrosys.base.uiinfra.tag.TextAreaWrapperTag</tagclass>
+		<bodycontent>empty</bodycontent>
+		<info>Tag wraps the given text</info>
+		<attribute>
+			<name>value</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<!-- default lineLength is 60(characters) -->
+			<name>lineLength</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+</taglib>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts-config PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 1.3//EN"
+        "http://jakarta.apache.org/struts/dtds/struts-config_1_3.dtd">
+<struts-config>
+    <!-- ========== Form Mapping Definitions ==============================  -->
+
+    <form-beans type="org.apache.struts.action.ActionFormBean">
+        <form-bean name="AForm" type="com.integrosys.course.ui.test.AForm"></form-bean>
+    </form-beans>
+
+    <!-- ========== Action Mapping Definitions ==============================   -->
+    <global-forwards type="org.apache.struts.action.ActionForward">
+        <forward name="error" path="/system/system_error.jsp" redirect="false"/>
+        <forward name="ui_error" path="/system/ui_system_error.jsp" redirect="false"/>
+        <forward name="command_error" path="/system/command_system_error.jsp" redirect="false"/>
+    </global-forwards>
+
+    <action-mappings type="com.integrosys.base.uiinfra.common.IntegroActionMapping">
+        <action path="/A" type="com.integrosys.course.ui.test.AAction" name="AForm" validate="false" parameter="id">
+            <forward name="list" path="/test/listA.jsp"/>
+            <forward name="search*" path="/test/listA.jsp"/>
+            <forward name="read" path="/test/readA.jsp"/>
+            <forward name="create" path="/test/confirm.jsp"/>
+            <forward name="update" path="/test/confirm.jsp"/>
+            <forward name="delete" path="/test/confirm.jsp"/>
+            <forward name="prepare_create" path="/test/createA.jsp"/>
+            <forward name="prepare_update" path="/test/updateA.jsp"/>
+        </action>
+
+    </action-mappings>
+</struts-config>

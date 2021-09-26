@@ -1,0 +1,24 @@
+<component name="libraryTable">
+  <library name="3rdpartylib">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/3rdpartylib/struts.jar!/" />
+      <root url="jar://$PROJECT_DIR$/3rdpartylib/commons-io-1.3.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/3rdpartylib/uiinfrabase.jar!/" />
+      <root url="jar://$PROJECT_DIR$/3rdpartylib/integrobase.jar!/" />
+      <root url="jar://$PROJECT_DIR$/3rdpartylib/hsqldb.jar!/" />
+      <root url="jar://$PROJECT_DIR$/3rdpartylib/commons-lang-2.3.jar!/" />
+      <root url="jar://$PROJECT_DIR$/3rdpartylib/log4j-1.2.14.jar!/" />
+      <root url="jar://$PROJECT_DIR$/3rdpartylib/ofacompui.jar!/" />
+      <root url="jar://$PROJECT_DIR$/3rdpartylib/spring.jar!/" />
+      <root url="jar://$PROJECT_DIR$/3rdpartylib/j2ee-jta.jar!/" />
+      <root url="jar://$PROJECT_DIR$/3rdpartylib/hibernate3.jar!/" />
+      <root url="jar://$PROJECT_DIR$/3rdpartylib/commons-collections.jar!/" />
+      <root url="jar://$PROJECT_DIR$/3rdpartylib/jakarta-oro-2.0.8.jar!/" />
+      <root url="jar://$PROJECT_DIR$/3rdpartylib/commons-logging.jar!/" />
+      <root url="jar://$PROJECT_DIR$/3rdpartylib/ofacomp.jar!/" />
+      <root url="jar://$PROJECT_DIR$/3rdpartylib/dom4j.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

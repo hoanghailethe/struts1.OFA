@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+
+    <class entity-name="oba" name="com.integrosys.course.app.test.bus.OBA" table="CUSTOMER" lazy="false">
+        <id name="id">
+            <generator class="sequence">
+                <param name="sequence">CUST_SEQ</param>
+            </generator>
+        </id>
+        <version name="versionTime" column="version_time" type="long"/>
+        <property name="name" column="NAME"/>
+        <property name="country" column="COUNTRY"/>
+        <property name="id" column="ID"/>
+        <property name="role" column="ROLE"/>
+    </class>
+
+</hibernate-mapping>
+

@@ -1,0 +1,93 @@
+<!-- edited with XMLSPY v5 rel. 2 U (http://www.xmlspy.com) by Daya (Intelli Fro) -->
+<project name="Integro" default="usage" basedir=".">
+	<!-- set global properties for this build -->
+	<target name="usage">
+		<echo message="ant [target]"/>
+		<echo message="Supported Build Options:"/>
+		<echo message="  clean   --> delete all previously compiled class files"/>
+		<echo message="  compile --> compile all modified java source files"/>
+		<echo message="  deploy  --> deploy application to WebLogic"/>
+	</target>
+	
+	<patternset id="runtime-libs-pattern">
+		<include name="*.jar"/>
+	</patternset>	
+	
+	<target name="init">
+		<!-- Create the time stamp -->
+		<tstamp/>
+		<!-- Create the build directory structure used by compile -->
+		<property file="build.properties"/>
+		<property name="properties.dir" value="${classes.dir}" />
+		<echo message="------------ ${project.name} ${project.version} ----------"/>
+		<path id="project.class.path">
+			<fileset dir="${3rdparty.dir}">
+				<include name="**/*.jar"/>
+				<include name="**/*.zip"/>
+			</fileset>
+		</path>
+	</target>
+
+	<target name="create-dirs" depends="init">
+		<mkdir dir="${build.dir}" />
+		<mkdir dir="${dist.dir}" />
+		<mkdir dir="${classes.dir}" />
+		<mkdir dir="${test.classes.dir}" />
+		<mkdir dir="${junit.report.dir}" />
+	</target>
+	
+	<target name="clean" depends="init">
+		<delete includeEmptyDirs="true" quiet="true">
+			<fileset dir="${classes.dir}" />
+			<fileset dir="${dist.dir}" />
+			<fileset dir="${test.classes.dir}" />
+			<fileset dir="${release.dir}" />
+			<fileset dir="${junit.report.dir}" />
+			<fileset dir="${public.html.dir}/WEB-INF/lib"/>
+		</delete>
+	</target>
+	
+	<target name="compile" depends="create-dirs">
+		<!-- Compile the java code from ${src} into ${build} -->
+		<depend srcdir="${src.dir}" destdir="${classes.dir}" closure="yes"/>
+		<javac srcdir="${src.dir}"
+		       destdir="${classes.dir}"
+		       debug="on"
+		       deprecation="false"
+		       memoryMaximumSize="300m"
+		       source="1.8"
+		       target="1.8"
+		       fork="yes"
+			   includeAntRuntime="false">
+			<classpath refid="project.class.path"/>
+		</javac>
+	</target>	
+    
+	<target name="deploy" depends="init, deploy-lib, deploy-source" 
+			description="copy resources to WEB-INF/classes and runtime libs to WEB-INF/lib">
+	</target>
+	
+	<target name="deploy-lib" depends="init" description="copy runtime libs to WEB-INF/lib">
+		<copy todir="${public.html.dir}/WEB-INF/lib" flatten="yes" overwrite="yes">
+			<fileset dir="${3rdparty.dir}">
+				<patternset refid="runtime-libs-pattern" />
+			</fileset>
+		</copy>
+	</target>
+
+	<target name="deploy-source" depends="init" description="copy resources to WEB-INF, eg groovy, xml, properties">
+        <copy todir="${properties.dir}" overwrite="yes" filtering="true">
+            <fileset dir="${config.dir}" includes="**/*.properties, **/*.dtd, **/*.xml, " excludes="earconfig/, **/.svn/" />
+		</copy>
+
+		<copy todir="${public.html.dir}/WEB-INF" overwrite="yes" filtering="true">
+            <fileset dir="${config.dir}">
+				<include name="dataMapping/*.hbm.xml"/>
+				<include name="applicationContext/*.xml"/>
+				<exclude name="applicationContext/AppContext_TestMaster.xml"/>
+				<exclude name="applicationContext/AppContext_Local.xml"/>
+				<exclude name="applicationContext/AppContext_TEST_Logic.xml"/>
+			</fileset>
+		</copy>
+	</target>	
+</project>

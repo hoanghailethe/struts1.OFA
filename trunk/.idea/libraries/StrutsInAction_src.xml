@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="StrutsInAction_src">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/doc/StrutsInAction_src/struts-scaffold_1_1.zip!/" />
+      <root url="jar://$PROJECT_DIR$/doc/StrutsInAction_src/commons-scaffold.zip!/" />
+      <root url="jar://$PROJECT_DIR$/doc/StrutsInAction_src/struts-scaffold_1_0.zip!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
